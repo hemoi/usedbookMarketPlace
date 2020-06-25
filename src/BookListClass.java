@@ -18,6 +18,7 @@ public class BookListClass {
 	public Book newBook(String ISBN, String name, String publisher, 
 			String writer, int year, int price, String bookCondition, User user) {
 		try {
+			// name cannot be null
 			if (name.equals("")) {
 				throw new RuntimeException("name can't be null");
 			}
@@ -39,6 +40,8 @@ public class BookListClass {
 		targetBook = null;
 	}
 	
+	// delete SearchBookList
+	// for delete user's books
 	public void deleteBook(SearchBookList tmpBookLists) {
 		Iterator<Book> it = tmpBookLists.getBookLists().iterator();
 		
