@@ -1,4 +1,5 @@
 
+// just print seller's email and buyer's email.
 public class Transfer {
 	static boolean transfer(Book targetBook, User buyer) {
 		System.out.println(targetBook.name + "책구매 완료!");

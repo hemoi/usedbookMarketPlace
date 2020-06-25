@@ -1,6 +1,5 @@
 import java.util.HashMap;
-//import java.util.Set;
-//import java.util.Iterator;
+
 
 public class Store {
 	HashMap<String, User> UserLists;
@@ -8,11 +7,15 @@ public class Store {
 	
 	public Store() {
 		UserLists = new HashMap<>();
+		// add Admin ID
 		newUser("admin", "nayana", null, null, null);
+		// new Book List
 		BookController = new BookListClass();
 	}
 	
+	// make newUser
 	public User newUser(String id, String pw, String name, String tel, String email) {
+		// throw exception if there is already same ID.
 		if (UserLists.get(id) != null) {
 			System.out.println();
 			throw new RuntimeException("(console) overlap ID");
@@ -22,6 +25,7 @@ public class Store {
 		return newUser;
 	}
 	
+	// login, return User
 	public User login(String id, String pw) {
 		try {
 			User tmpUser = UserLists.get(id);
@@ -40,7 +44,9 @@ public class Store {
 		}
 		
 	}
-		
+	
+	// deactivate User
+	// user can't login if id is deactivated
 	public void deactivateUser(String userID) {
 		try {
 			User targetUser = UserLists.get(userID);
@@ -51,6 +57,7 @@ public class Store {
 		
 	}
 	
+	// activate User
 	public void activateUser(String userID) {
 		try {
 		User targetUser = UserLists.get(userID);
@@ -61,6 +68,8 @@ public class Store {
 		
 	}
 	
+	// delete User. (User must be deactivated to delete)
+	// also delete their book, by searching their book
 	public String deleteUser(String userID) {
 		User targetUser = UserLists.get(userID);
 		

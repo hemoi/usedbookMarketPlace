@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 
+// Search returns SearchBookList
 public class Search {
 	static ArrayList<Book> BookLists;
 	

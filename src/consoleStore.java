@@ -6,6 +6,7 @@ public class consoleStore {
 	static Store store;
 	static Scanner scan;
 
+	// print bookList
 	static public void showBookInfo(SearchBookList BookLists) {
 		System.out.println("no\t                ISBN\t        NAME\t publisher\t    writer\tyear\t price\t  sellerID\tbookCondition");
 		int i =1;
@@ -15,12 +16,14 @@ public class consoleStore {
 		}
 	}
 	
+	// print book
 	static public void showBookInfo(Book itBook) {
 		System.out.println("                ISBN\t        NAME\t publisher\t    writer\tyear\t price\t  sellerID\tbookCondition");
 		System.out.printf("%20s\t%12s\t%10s\t%10s\t%4d\t%6d\t%10s\t%13s\n", itBook.ISBN, itBook.name, itBook.publisher, itBook.writer, itBook.year, itBook.price, itBook.user.userID, itBook.bookCondition);
 
 	}
 	
+	// print Userlist
 	static public void showUserList() {
 
 		System.out.println("<유저리스트>");
@@ -31,6 +34,8 @@ public class consoleStore {
 		
 	}
 	
+	// admin - manageUser
+	// change User condition or delete User.
 	static public void manageUser() {
 		System.out.println("어떤 유저를 관리할 건가요?");
 		String userID = scan.next();
@@ -61,6 +66,8 @@ public class consoleStore {
 		showUserList();
 	}
 	
+	// Search book
+	// using ISBN, name, writer, seller ID
 	static public Book searchBook(){
 		int sel;
 		System.out.println("검색옵션\n[1] 책의 제목  [2] ISBN  [3] 저자  [4] 판매자id");
@@ -90,6 +97,7 @@ public class consoleStore {
 		return targetBook;
 	}
 	
+	// change string input to integer
 	static int stringToInt(String str) {
 		int number = 0;
 		try{
@@ -102,6 +110,7 @@ public class consoleStore {
 		}
 	}
 	
+	// add new Book
 	static public void addNewBook(User nowUser) {
 		String ISBN, name, publisher, writer, bookCondition, price, year;
 		
@@ -158,6 +167,9 @@ public class consoleStore {
 		System.out.println();
 	}
 	
+	// login or register
+	// login returns 'Users' instance
+	// user instance help console to distinguish who user is (also admin)
 	static public User login() {
 		int sel =0;
 		User nowUser = null;
@@ -209,6 +221,7 @@ public class consoleStore {
 		return nowUser;
 	}
 	
+	// select book in booklist
 	public static Book selectBook(SearchBookList BookList) {
 		System.out.println("몇번째 책을 선택하시겠습니까?");
 		int sel = scan.nextInt();
@@ -222,6 +235,7 @@ public class consoleStore {
 		}
 	}
 	
+	// delete targetBook
 	public static void deleteBook(Book targetBook) {
 		showBookInfo(targetBook);
 		try {
@@ -234,6 +248,8 @@ public class consoleStore {
 		} 
 	}
 	
+	// change my book
+	// delete my book
 	public static void changeBook(SearchBookList BookLists) {
 		Book targetBook;
 		showBookInfo(BookLists);
@@ -309,6 +325,7 @@ public class consoleStore {
 			
 			sel = scan.nextInt();
 			switch (sel) {
+				// manage Book
 				case 1:
 					printLine();
 					try {
@@ -320,12 +337,14 @@ public class consoleStore {
 					}
 					break;
 					
+				// manage User
 				case 2:
 					printLine();
 					showUserList();
 					manageUser();
 					break;
-					
+				
+				// login with different ID
 				case 3:
 					printLine();
 					nowUser = login();

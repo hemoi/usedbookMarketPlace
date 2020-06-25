@@ -13,6 +13,7 @@ public class UnitTest extends TestCase{
 	static Book dummyBook1;
 	static Book dummyBook2;
 	
+	// before test. initialize Store instance, add dummies.
 	@Before public void setUp() {
 
 		store = new Store();
@@ -28,6 +29,7 @@ public class UnitTest extends TestCase{
 		System.gc();
 	}
 	
+	// test addBook. check booklist's size
 	@Test
 	public void testAddBook() {
 		beforeSize = store.BookController.BookLists.size();
@@ -44,7 +46,7 @@ public class UnitTest extends TestCase{
 		
 	}
 	
-	
+	// test addUser. check userlist's size
 	@Test
 	public void testAddUser() {
 		beforeSize = store.UserLists.size();
@@ -55,6 +57,8 @@ public class UnitTest extends TestCase{
 
 	}
 	
+	// test deactivate, delete user
+	// also delete user's books
 	@Test
 	public void testDeleteUser() {
 		beforeSize = store.UserLists.size();
@@ -69,9 +73,10 @@ public class UnitTest extends TestCase{
 		assertEquals(tmp.getBookLists().size(), 0);
 	}
 	
+	// test searching by using dummies.
 	@Test
 	public void testSearch() {
-//		Book("452-00-9876-865-3", "harryPotter", "def", "JKROLLING", 2017, 12000, "GOOD", dummyUser);
+//		Book("452-00-9876-865-3", "harryPotter", "def", "JKROLLING", 2017, 12000, "GOOD", dummyUser)
 
 		SearchBookList sbl;
 		sbl = store.BookController.Search.searchByID("dummy1");
@@ -88,13 +93,14 @@ public class UnitTest extends TestCase{
 		
 	}
 	
+	// test login(Search)
 	@Test
 	public void testLogin() {
 		User user = store.login("dummy1", "passwd");
 		System.out.println(user.userID);
 	}
 	
-	
+	// test login(Error)
 	@Test(expected=RuntimeException.class)
 	public void testLoginError() {
 		try {
@@ -104,6 +110,7 @@ public class UnitTest extends TestCase{
 		}
 	}
 	
+	// test delete activate User
 	@Test
 	public void testDeleteActiveUser() {
 		try {
